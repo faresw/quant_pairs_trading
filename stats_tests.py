@@ -7,7 +7,7 @@ def find_cointegration_pair(series1, series2, significance=0.05):
     """
     Performs an OLS regression of series1 ~ series2,
     then tests if residuals are stationary (ADF test).
-    Returns (is_cointegrated, beta, pvalue).
+    Returns (is_cointegrated, beta, intercept, pvalue).
     """
     # Align indices
     df = pd.concat([series1, series2], axis=1).dropna()

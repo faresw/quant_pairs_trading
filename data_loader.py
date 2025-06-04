@@ -26,7 +26,7 @@ def fetch_price_data(tickers, start_date, end_date, data_dir="data"):
             start=start_date,
             end=end_date,
             progress=False,
-            auto_adjust=True,     # This makes 'Close' already adjusted
+            auto_adjust=True,     # ensures the Close column is already adjusted
             threads=True
         )
         # If multiple tickers, df_raw is a DataFrame with MultiIndex columns,

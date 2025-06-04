@@ -39,8 +39,9 @@ def generate_signals(zscore, entry_threshold=2.0, exit_threshold=0.5):
     mask_exit = zscore.abs() < exit_threshold
     signals.loc[mask_exit, "position"] = 0
 
-    # Forward‐fill positions to hold until an exit signal appears
-    signals["position"] = signals["position"].replace(to_replace=0, method="ffill").fillna(0)
+    # Forward-fill positions so entries persist until an explicit exit occurs.
+    # Using plain ffill preserves zeros written by the exit rule above.
+    signals["position"] = signals["position"].ffill().fillna(0)
 
     return signals
 
